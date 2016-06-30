@@ -8,6 +8,13 @@
 
 This is a sample Slack bot built with Botkit.
 
+  Run your bot from the command line:
+
+    token=<MY TOKEN> node slack_bot.js
+
+# USE THE BOT:
+
+
 This bot demonstrates many of the core features of Botkit:
 
 * Connect to Slack using the real time API
@@ -22,13 +29,6 @@ This bot demonstrates many of the core features of Botkit:
   Get a Bot token from Slack:
 
     -> http://my.slack.com/services/new/bot
-
-  Run your bot from the command line:
-
-    token=<MY TOKEN> node slack_bot.js
-
-# USE THE BOT:
-
   Find your bot inside Slack to send it a direct message.
 
   Say: "Hello"
@@ -226,6 +226,78 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
              '>. I have been running for ' + uptime + ' on ' + hostname + '.');
 
     });
+
+//BEGIN MASTER OOGWAY
+
+controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(bot, message) {
+
+    controller.storage.users.get(message.user, function(err, user) {
+    
+            bot.startConversation(message, function(err, convo) {
+                if (!err) {
+                    //convo.say('time to get up!!!');
+                    
+                        convo.ask('Are you up?', [
+                            {
+                                pattern: bot.utterances.yes,
+                                callback: function(response, convo) {
+                                    // since no further messages are queued after this,
+                                    // the conversation will end naturally with status == 'completed'
+                                    convo.next();
+                                }
+                            },
+                            {
+                                pattern: bot.utterances.no,
+                                callback: function(response, convo) {
+                                    convo.say("please getup")
+                                    // stop the conversation. this will cause it to end with status == 'stopped'
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            },
+                            {
+                                default: true,
+                                callback: function(response, convo) {
+                                    convo.repeat();
+                                    convo.next();
+                                }
+                            }
+                        ]);
+
+                        convo.next();
+
+                     
+
+                    convo.on('end', function(convo) {
+                        if (convo.status == 'completed') {
+                            bot.reply(message, 'great! Thanks for waking up!');
+
+                           //controller.storage.users.get(message.user, function(err, user) {
+                            //    if (!user) {
+                            //       user = {
+                            //            id: message.user,
+                            //        };
+                            //   }
+                            //    user.name = convo.extractResponse('nickname');
+                            //    controller.storage.users.save(user, function(err, id) {
+                            //        bot.reply(message, 'Got it. I will call you ' + user.name + ' from now on.');
+                            //    });
+                            //});
+
+
+
+                        } else {
+                            // this happens if the conversation ended prematurely for some reason
+                            bot.reply(message, 'OK, nevermind!');
+                        }
+                    });
+                }
+            });
+        
+    });
+});
+
+
 
 function formatUptime(uptime) {
     var unit = 'second';
