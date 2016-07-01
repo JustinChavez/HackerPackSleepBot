@@ -19,7 +19,12 @@ var bot = controller.spawn({
 var team = new Array();
 
     //Add team members here
-    team["U0ZERN2NN"] = 1;
+    team["U0ZERN2NN"] = 0;
+    team["U11C4JN14"] = 0;
+
+var teamInfo = new Array();
+    teamInfo["U0ZERN2NN"] = "Justin Chavez, 585-880-0339";
+    teamInfo["U11C4JN14"] = "Jonathan Chavez, 123-456-7891";
 
 //wakeup starts the initial practice in making sure that people are awake
 controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(bot, message) {
@@ -29,8 +34,8 @@ controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(b
     {
         bot.startPrivateConversation({ user: key},function(err,dm) 
         {
-    
-            dm.say('Are you awake? Please reply yes');
+            dm.say('There is just news. There is no good or bad.')
+            dm.say('Are you awake my friend? Please say yes');
                 
 
         });
@@ -42,7 +47,7 @@ controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(b
 controller.hears(['yes'], 'direct_message', function(bot, message) {
 
     team[message.user] = 1;
-    bot.reply(message, "yes worked");
+    bot.reply(message, "The universe has brought us the dragon warrior!");
 
 });
 
@@ -57,17 +62,28 @@ controller.hears(['reset'], 'direct_message', function(bot, message) {
 //getup will notify others to wakeup the people who are not awake
 controller.hears(['getup'], 'direct_message,direct_mention,mention', function(bot, message) {
 
-
+    var peopleToWake = "";
     for (key in team)
     {
         if (team[key] == 0)
         {
-            bot.startPrivateConversation({ user: key},function(err,dm) 
-            {
-                dm.say('Are you awake? Please reply yes');
-            });
+            peopleToWake = peopleToWake + teamInfo[key] + "\n";
         }
     }
+
+            bot.say(
+                {
+                    text: 'These young warriors need extra help waking up:',
+                    channel: 'C0ZEF3BHT'
+                }
+            );
+            bot.say(
+                {
+                    text: peopleToWake,
+                    channel: 'C0ZEF3BHT'
+                }
+
+            );
 
 });
 
