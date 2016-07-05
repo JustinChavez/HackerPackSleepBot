@@ -41,7 +41,7 @@ var team = new Array();
     team["U19MA1DGB"] = 0;
 
     //Loryn
-    team["U1LP1SHEJ"] = 0;
+    //team["U1LP1SHEJ"] = 0;
 
 var teamInfo = new Array();
 
@@ -52,7 +52,7 @@ var teamInfo = new Array();
     teamInfo["U1ASDT37U"] = "Jaime Orellana 240-492-9431 room: 405";
     teamInfo["U1BP6ERCG"] = "Lois Dzebissov phone unknown room: across from angelina's";
     teamInfo["U19MA1DGB"] = "Angelina Bingei 301-646-6647 room: to the left of room 400S";
-    teamInfo["U1LP1SHEJ"] = "Loryn Chen 240-994-8163 room: 305";
+    //teamInfo["U1LP1SHEJ"] = "Loryn Chen 240-994-8163 room: 305";
 
 //wakeup starts the initial practice in making sure that people are awake
 controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(bot, message) {
