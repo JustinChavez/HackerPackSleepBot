@@ -20,39 +20,12 @@ var team = new Array();
 
     //Add team members here
     //Justin
-    team["U0ZERN2NN"] = 0;
-
-    //Jonathan
-    team["U11C4JN14"] = 0;
-
-    //Linhchi
-    team["U0ZEFK971"] = 0;
-
-    //Amy
-    team["U1C1LUVU7"] = 0;
-
-    //Jaime
-    team["U1ASDT37U"] = 0;
-
-    //Lois
-    team["U1BP6ERCG"] = 0;
-
-    //Angelina
-    team["U19MA1DGB"] = 0;
-
-    //Loryn
-    //team["U1LP1SHEJ"] = 0;
+    team["<memberID>"] = 0;
 
 var teamInfo = new Array();
 
-    teamInfo["U0ZERN2NN"] = "Justin Chavez, 585-880-0339 room: homeless";
-    teamInfo["U11C4JN14"] = "Jonathan Chavez, 123-456-7891 room: 306";
-    teamInfo["U0ZEFK971"] = "Linhchi Nguyen 301-281-1705 room: 400S";
-    teamInfo["U1C1LUVU7"] = "Amy Tong phone unknown room: somewhere in the depths of Bloomberg";
-    teamInfo["U1ASDT37U"] = "Jaime Orellana 240-492-9431 room: 405";
-    teamInfo["U1BP6ERCG"] = "Lois Dzebissov phone unknown room: across from angelina's";
-    teamInfo["U19MA1DGB"] = "Angelina Bingei 301-646-6647 room: to the left of room 400S";
-    //teamInfo["U1LP1SHEJ"] = "Loryn Chen 240-994-8163 room: 305";
+    teamInfo["<memberID>"] = "<member information to publish>";
+
 
 //wakeup starts the initial practice in making sure that people are awake
 controller.hears(['wakeup'], 'direct_message,direct_mention,mention', function(bot, message) {
@@ -102,13 +75,13 @@ controller.hears(['getup'], 'direct_message,direct_mention,mention', function(bo
             bot.say(
                 {
                     text: 'These young warriors need extra help waking up:',
-                    channel: 'C0ZEF3BHT'
+                    channel: '<channelID>'
                 }
             );
             bot.say(
                 {
                     text: peopleToWake,
-                    channel: 'C0ZEF3BHT'
+                    channel: '<channelID>'
                 }
 
             );
