@@ -26,3 +26,37 @@ Within ''' controller.hears(['getup'], ... ''' You need to include the channel i
 
 bot built using botkit from: https://github.com/howdyai/botkit
 
+## Operation
+
+### wakeup
+
+Once the bot is up and running and is programmed with the neccesary information, we can then proceed with the message automation.
+
+Master Oogway will message everybody listed in the team when the command 'wakeup' is sent to him via direct message. 
+
+The message Master Oogway will request each member to say yes to him. Upon hearing the message yes, Master Oogway will make the member awake through the array team. 
+
+### getup
+
+After hearing wakeup, Master Oogway will await the command 'getup'. Once Master Oogway hears getup, he will immediately list who has not responded yes to the desginated channel. 
+
+### reset
+
+When Master Oogway hears reset, the array marking members that have responded (team) will be reset making it so that no members are marked that they have responded. 
+
+
+## Tips
+
+The slackbot can be automated to send messages to Master Oogway like wakeup and getup so the user will not manually have to.
+
+use 
+```
+/remind <user> <message> in/at <time length/specific time>
+```
+
+And replace <message> with wakeup or getup. This way you can set recurring reminders.
+
+
+
+
+ 
